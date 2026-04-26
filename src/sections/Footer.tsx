@@ -1,20 +1,28 @@
+import { Mail, Phone } from "lucide-react";
+
 export default function Footer() {
   return (
-    <footer className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-gray-200">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
+    <footer className="bg-[#5B6CF9] py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2 text-white/90">
+            <Mail className="w-4 h-4" />
+            <span className="text-sm">840245937@qq.com</span>
+          </div>
+          <div className="flex items-center gap-2 text-white/90">
+            <Phone className="w-4 h-4" />
+            <span className="text-sm">15323257185</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 text-white/60 text-sm">
+          <span>Created by</span>
           <img
             src="/images/hero-avatar.png"
-            alt="孟珍珍"
-            className="w-8 h-8 rounded-full object-cover"
+            alt="Kimi Agent"
+            className="w-6 h-6 rounded-full object-cover"
           />
-          <span className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} 孟珍珍 · 体验设计师
-          </span>
+          <span>Kimi Agent</span>
         </div>
-        <p className="text-xs text-gray-400">
-          使用 React + Tailwind CSS 设计与开发
-        </p>
       </div>
     </footer>
   );
