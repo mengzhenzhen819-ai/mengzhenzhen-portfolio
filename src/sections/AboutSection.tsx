@@ -111,8 +111,12 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-4xl sm:text-5xl font-black text-[#1a1a1a] mb-6">
-              关于我
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 text-xs tracking-[0.2em] text-gray-500 uppercase mb-6">
+              ABOUT ME
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1a1a1a] leading-tight mb-10">
+              善于发现问题，用全链路<br />
+              设计思维辅助业务指标提升
             </h2>
           </motion.div>
 
