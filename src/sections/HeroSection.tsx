@@ -3,8 +3,8 @@ import { ArrowRight } from "lucide-react";
 import TypewriterText from "../components/TypewriterText";
 
 const stats = [
-  { num: "8+", label: "年设计经验" },
-  { num: "3", label: "顶级互联网公司" },
+  { num: "7+", label: "年设计经验" },
+  { num: "3家", label: "大厂互联网公司" },
   { num: "亿+", label: "用户规模覆盖" },
   { num: "硕士", label: "设计艺术学" },
 ];
@@ -21,8 +21,8 @@ export default function HeroSection() {
         {/* Left Content */}
         <div>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 text-xs tracking-[0.2em] text-gray-500 uppercase mb-6">
-              AI PRODUCT EXPERIENCE DESIGNER
+            <div className="section-tag mb-6">
+              AI时代体验设计师
             </div>
           </motion.div>
 
@@ -33,25 +33,20 @@ export default function HeroSection() {
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.55 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-400 leading-[0.95] tracking-tight mb-2"
+            className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-500 leading-[0.95] tracking-tight mb-2"
           >
             <TypewriterText text="体验设计师" speed={0.08} delay={1.2} cursor={false} />
           </motion.p>
 
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-300 leading-[0.95] tracking-tight mb-8"
+            className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-500 leading-[0.95] tracking-tight mb-8"
           >
-            <TypewriterText text="× AI 时代" speed={0.08} delay={1.8} cursor={true} />
+            <TypewriterText text="× AI 时代" speed={0.08} delay={1.8} cursor={false} />
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.7 }} className="text-gray-600 mb-8 max-w-lg">
             <p className="text-base leading-relaxed">
-              <TypewriterText
-                text="大厂体验设计师，先后经历滴滴 · 阿里 · 字节跳动。具备大型 ToC / ToB 项目全链路设计经验，正向 AI 产品体验设计 方向探索转型。"
-                speed={0.04}
-                delay={2.4}
-                cursor={true}
-              />
+              Hi，我是Magic ，一名资深产品体验设计师，先后经历滴滴 · 阿里 · 字节跳动。具备大型 ToC / ToB 项目全链路设计经验，横跨 B 端数据平台、C 端增长激励，正向 AI Native 体验设计方向探索转型
             </p>
           </motion.div>
 
@@ -68,13 +63,14 @@ export default function HeroSection() {
             </button>
           </motion.div>
 
+          {/* Stats */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.9 }}
             className="flex flex-wrap gap-6 sm:gap-10"
           >
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="text-2xl sm:text-3xl font-bold text-[#1a1a1a] mb-1">{stat.num}</p>
-                <p className="text-xs text-gray-500">{stat.label}</p>
+                <p className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] mb-2">{stat.num}</p>
+                <p className="text-sm text-gray-500">{stat.label}</p>
               </div>
             ))}
           </motion.div>

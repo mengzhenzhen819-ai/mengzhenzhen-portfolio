@@ -83,16 +83,20 @@ export default function AboutSection() {
       if (prev.includes(idx)) return prev;
       return [...prev, idx];
     });
+
     const el = itemRefs.current[idx];
     if (!el) return;
+    
     const contentWrapper = el.querySelector("[data-accordion-content]") as HTMLElement;
     if (!contentWrapper) return;
+    
     requestAnimationFrame(() => {
       setTimeout(() => {
         const contentHeight = contentWrapper.scrollHeight;
         const elTop = el.getBoundingClientRect().top + window.scrollY;
         const navOffset = 80;
         const targetScroll = elTop - navOffset + contentHeight * 0.3;
+        
         window.scrollTo({
           top: Math.min(targetScroll, document.body.scrollHeight - window.innerHeight),
           behavior: "smooth",
@@ -102,8 +106,10 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <>
+      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="max-w-3xl">
+        {/* Content */}
         <div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -111,8 +117,10 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
+            <div className="section-tag">关于我</div>
             <h2 className="text-4xl sm:text-5xl font-black text-[#1a1a1a] mb-6">
-              关于我
+              善于发现问题，用全链路
+              <span className="block mt-2">设计思维辅助业务指标提升</span>
             </h2>
           </motion.div>
 
@@ -122,7 +130,8 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <div className="flex items-center gap-8 mb-8">
+            {/* Tab Navigation - Plain text style */}
+            <div className="flex items-center gap-14 mb-10">
               <button
                 onMouseEnter={() => setActiveTab("advantages")}
                 className={`text-2xl sm:text-3xl font-bold transition-colors duration-200 cursor-default ${
@@ -142,6 +151,7 @@ export default function AboutSection() {
             </div>
           </motion.div>
 
+          {/* Tab Content */}
           <AnimatePresence mode="wait">
             {activeTab === "advantages" && (
               <motion.div
@@ -151,7 +161,9 @@ export default function AboutSection() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.35 }}
               >
+                {/* Accordion style matching work experience */}
                 <div className="border-t border-gray-200">
+                  {/* 经历 */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -170,6 +182,7 @@ export default function AboutSection() {
                     </div>
                   </motion.div>
 
+                  {/* 项目 */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -209,6 +222,7 @@ export default function AboutSection() {
                     </div>
                   </motion.div>
 
+                  {/* 亮点 */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -238,9 +252,7 @@ export default function AboutSection() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.35 }}
               >
-                <p className="text-gray-500 mb-8">
-                  有字节跳动、阿里、滴滴等工作背景，对办公协同类、影视数据、激励增长等全链路设计经验丰富
-                </p>
+                {/* Accordion - Hover expand with scroll */}
                 <div className="border-t border-gray-200">
                   {workExperiences.map((exp, idx) => {
                     const isOpen = openIndexes.includes(idx);
@@ -284,6 +296,7 @@ export default function AboutSection() {
                             </div>
                           </div>
                         </button>
+
                         <AnimatePresence>
                           {isOpen && (
                             <motion.div
@@ -327,7 +340,29 @@ export default function AboutSection() {
             )}
           </AnimatePresence>
         </div>
+
       </div>
     </section>
+      <style>{`
+        .section-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-family: 'DM Mono', monospace;
+          font-size: 15px;
+          color: #9C9A95;
+          letter-spacing: 2.5px;
+          text-transform: uppercase;
+          margin-bottom: 20px;
+        }
+
+        .section-tag::before {
+          content: '';
+          width: 18px;
+          height: 1px;
+          background: #9C9A95;
+        }
+      `}</style>
+    </>
   );
 }

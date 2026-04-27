@@ -18,6 +18,7 @@ export default function TypewriterText({
 }: TypewriterTextProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
+
   const characters = text.split("");
 
   const container = {
@@ -47,7 +48,12 @@ export default function TypewriterText({
   return (
     <span ref={ref} className={className}>
       {isInView ? (
-        <motion.span variants={container} initial="hidden" animate="visible" aria-label={text}>
+        <motion.span
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          aria-label={text}
+        >
           {characters.map((char, index) => (
             <motion.span
               key={`${char}-${index}`}
@@ -62,7 +68,11 @@ export default function TypewriterText({
             <motion.span
               className="inline-block w-[3px] h-[1em] bg-current ml-0.5 align-middle"
               animate={{ opacity: [1, 0, 1] }}
-              transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 0.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
           )}
         </motion.span>
