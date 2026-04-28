@@ -1,7 +1,7 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { projectsDetail } from "@/data/projects";
+import { projectsDetail } from "../data/projects";
 
 export default function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
@@ -21,9 +21,8 @@ export default function ProjectDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <div className="min-h-screen bg-[#f7f7f8]">
+      <div className="sticky top-0 z-50 bg-[#f7f7f8]/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
           <Link
             to="/"
@@ -36,7 +35,6 @@ export default function ProjectDetail() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Title Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,7 +57,6 @@ export default function ProjectDetail() {
           <p className="text-lg text-gray-600 max-w-2xl">{project.description}</p>
         </motion.div>
 
-        {/* Meta Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,7 +81,6 @@ export default function ProjectDetail() {
           </div>
         </motion.div>
 
-        {/* Cover Image */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,7 +94,6 @@ export default function ProjectDetail() {
           />
         </motion.div>
 
-        {/* Gallery */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

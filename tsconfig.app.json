@@ -12,6 +12,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "react-router-dom": [
+        "./src/shims/react-router-dom"
       ]
     },
     /* Bundler mode */

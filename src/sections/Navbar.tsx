@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const navItems = [
@@ -7,41 +6,75 @@ const navItems = [
   { label: "关于我", href: "/#about" },
   { label: "我的项目", href: "/#projects" },
   { label: "AI 探索", href: "/#ai-explore" },
-  { label: "联系我", href: "/#contact" },
+];
+
+const sectionMap = [
+  { id: "about", label: "关于我" },
+  { id: "projects", label: "我的项目" },
+  { id: "ai-explore", label: "AI 探索" },
+  { id: "contact", label: "联系我" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [activeLabel, setActiveLabel] = useState("首页");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const probe = window.scrollY + 180;
+      let current = "首页";
+
+      for (const section of sectionMap) {
+        const element = document.getElementById(section.id);
+        if (element && probe >= element.offsetTop) {
+          current = section.label;
+        }
+      }
+
+      setActiveLabel(current);
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("hashchange", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", handleScroll);
+    };
   }, []);
 
   return (
-    <motion.nav
+    <motion.header
+      className="site-header"
+      aria-label="主导航"
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full flex items-center gap-8 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-lg border border-gray-100"
-          : "bg-white/70 backdrop-blur-sm border border-gray-100"
-      }`}
     >
-      <Link to="/" className="flex items-center gap-2">
-        <img src="/images/hero-avatar.png" alt="avatar" className="w-8 h-8 rounded-full" />
-      </Link>
-      {navItems.map((item) => (
-        <a
-          key={item.label}
-          href={item.href}
-          className="text-sm font-medium text-gray-600 hover:text-[#1a1a1a] transition-colors"
-        >
-          {item.label}
+      <nav className="nav-shell">
+        <a className="nav-avatar" href="/" aria-label="回到首页">
+          <img src="/images/hero-avatar.png" alt="头像" />
         </a>
-      ))}
-    </motion.nav>
+
+        <div className="nav-links">
+          {navItems.map((item) => {
+            const isActive = activeLabel === item.label;
+            return (
+              <a
+                key={item.label}
+                className={`nav-link ${isActive ? "is-active" : ""}`}
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+        </div>
+
+        <a className="contact-pill" href="/#contact">
+          联系我
+        </a>
+      </nav>
+    </motion.header>
   );
 }

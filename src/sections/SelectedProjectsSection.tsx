@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
-import { allProjects, tabs, springTransition } from "@/data/projects";
-import type { CardProject } from "@/data/projects";
+import { Link } from "react-router";
+import { allProjects, tabs, springTransition } from "../data/projects";
+import type { CardProject } from "../data/projects";
 
 function ProjectCard({
   project,
