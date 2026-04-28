@@ -1,21 +1,21 @@
-import Navbar from "../sections/Navbar";
-import HeroSection from "../sections/HeroSection";
-import AboutSection from "../sections/AboutSection";
-import SelectedProjectsSection from "../sections/SelectedProjectsSection";
-import MarqueeSection from "../sections/MarqueeSection";
-import OtherProjectsSection from "../sections/OtherProjectsSection";
-import ContactSection from "../sections/ContactSection";
+import Navbar from "@/sections/Navbar";
+import HeroSection from "@/sections/HeroSection";
+import AboutSection from "@/sections/AboutSection";
+import MarqueeSection from "@/sections/MarqueeSection";
+import SelectedProjectsSection from "@/sections/SelectedProjectsSection";
+import AISection from "@/sections/AISection";
+import ContactSection from "@/sections/ContactSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f7f7f8]">
+    <>
       <Navbar />
       <HeroSection />
       <AboutSection />
-      <SelectedProjectsSection />
       <MarqueeSection />
-      <OtherProjectsSection />
+      <SelectedProjectsSection />
+      <AISection />
       <ContactSection />
-    </div>
+    </>
   );
 }
