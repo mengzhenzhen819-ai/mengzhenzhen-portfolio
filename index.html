@@ -293,7 +293,7 @@
         display: inline-flex;
         align-items: center;
         border-radius: 999px;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 400;
         text-decoration: none;
         padding: 7px 16px;
@@ -378,6 +378,7 @@
       }
       #projects {
         background-color: #f7f7f8;
+        padding-bottom: 220px !important;
       }
       #ai-explore-page {
         position: relative;
@@ -386,6 +387,183 @@
       #ai-explore {
         position: relative;
         background-color: #f7f7f8;
+      }
+      .ai-project-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+      .ai-project-card {
+        position: relative;
+        display: block;
+        height: 350px;
+        border-radius: 28px;
+        overflow: hidden;
+        color: inherit;
+        text-decoration: none;
+        background: #fff;
+        box-shadow: 0 18px 45px rgba(17, 19, 26, 0.08);
+        isolation: isolate;
+      }
+      .ai-project-card[data-style="portfolio"] {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      .ai-project-card[data-style="ai-native"] {
+        grid-column: 1;
+        grid-row: 2;
+      }
+      .ai-project-card[data-style="placeholder"] {
+        grid-column: 2;
+        grid-row: 1;
+      }
+      .ai-project-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(17, 19, 26, 0.08);
+        border-radius: inherit;
+        pointer-events: none;
+        z-index: 5;
+      }
+      .ai-card-visual {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background: linear-gradient(180deg, #f7f7f8 0%, #ffffff 100%);
+        transition: filter 620ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .ai-card-visual::before {
+        content: "";
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        opacity: 0;
+        z-index: 1;
+        background: transparent;
+        transition: opacity 520ms ease;
+      }
+      .ai-card-image {
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transform-origin: center top;
+        transform: scale(1.24);
+        transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1), border-radius 620ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 620ms cubic-bezier(0.16, 1, 0.3, 1), filter 620ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .ai-card-placeholder {
+        display: grid;
+        place-items: center;
+        padding: 34px;
+        background: #f4f5f7;
+      }
+      .ai-card-placeholder-copy {
+        width: 100%;
+        min-height: 220px;
+        display: grid;
+        place-items: center;
+        border-radius: 24px;
+        border: 0;
+        background: #f8f8f9;
+        box-shadow: none;
+        color: #9aa1ad;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+      .ai-project-card[data-style="portfolio"] .ai-card-image,
+      .ai-project-card[data-style="placeholder"] .ai-card-image {
+        object-position: top center;
+      }
+      .ai-card-detail {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 46%;
+        padding: 44px 32px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 10px;
+        background: #ffffff;
+        color: #11131a;
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 420ms ease, transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 3;
+      }
+      .ai-card-title {
+        margin: 0;
+        max-width: calc(100% - 64px);
+        font-size: 22px;
+        line-height: 1.28;
+        font-weight: 700;
+      }
+      .ai-card-summary {
+        margin: 0;
+        max-width: calc(100% - 64px);
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6b7280;
+      }
+      .ai-card-arrow {
+        position: absolute;
+        right: 24px;
+        bottom: 22px;
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 19, 26, 0.04);
+        color: #11131a;
+        font-size: 22px;
+        line-height: 1;
+        transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms ease, background 300ms ease;
+      }
+      .ai-project-card:hover,
+      .ai-project-card:focus-visible {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 60px rgba(17, 19, 26, 0.12);
+      }
+      .ai-project-card,
+      .ai-project-card:hover,
+      .ai-project-card:focus-visible {
+        transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 500ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .ai-project-card:hover .ai-card-visual,
+      .ai-project-card:focus-visible .ai-card-visual {
+        filter: saturate(1.08);
+      }
+      .ai-project-card:hover .ai-card-visual::before,
+      .ai-project-card:focus-visible .ai-card-visual::before {
+        opacity: 1;
+      }
+      .ai-project-card:hover .ai-card-image,
+      .ai-project-card:focus-visible .ai-card-image {
+        transform: translateY(-34px) scale(1.02);
+        border-radius: 20px;
+        box-shadow: 0 18px 38px rgba(17, 19, 26, 0.16);
+      }
+      .ai-project-card:hover .ai-card-detail,
+      .ai-project-card:focus-visible .ai-card-detail {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .ai-project-card:hover .ai-card-arrow,
+      .ai-project-card:focus-visible .ai-card-arrow {
+        transform: rotate(-45deg);
+        border-color: rgba(17, 19, 26, 0.06);
+        background: #f7f7f8;
       }
       #projects-byte {
         padding-top: 18px;
@@ -546,6 +724,9 @@
       .about-section .tab-panel.is-active .timeline-item:nth-child(5) {
         animation-delay: 0.38s;
       }
+      .about-section .tab-panel.is-active .timeline-item:nth-child(6) {
+        animation-delay: 0.46s;
+      }
       .advantage-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -607,8 +788,8 @@
         margin-top: 12px;
       }
       .about-em {
-        color: #374151;
-        font-weight: 700;
+        color: #1a1a1a;
+        font-weight: 400;
       }
       .about-normal {
         color: inherit;
@@ -700,6 +881,15 @@
       }
       .timeline-info {
         flex: 1;
+      }
+      .timeline-date {
+        margin: 0 0 8px;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 400;
+        color: #8f96a3;
+        line-height: 1.2;
+        letter-spacing: 0.8px;
       }
       .timeline-item .timeline-title {
         margin: 0 0 6px;
@@ -1115,6 +1305,11 @@
           0 6px 18px rgba(0,0,0,0.07),
           0 18px 40px rgba(0,0,0,0.08);
       }
+      #byte-growth-carousel .proj-card:hover,
+      #byte-growth-carousel .proj-card.is-hovered,
+      .project-grid-hovering #byte-growth-carousel .proj-card.is-hovered {
+        transform: none;
+      }
       .proj-card-featured-tilt-shell {
         position: relative;
         border-radius: 16px;
@@ -1195,6 +1390,46 @@
           padding: 36px 28px;
         }
       }
+      @media (max-width: 900px) {
+        .ai-project-cards {
+          display: flex;
+          gap: 16px;
+          overflow-x: auto;
+          padding-bottom: 12px;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+        }
+        .ai-project-card {
+          min-width: min(84vw, 380px);
+          height: 320px;
+          scroll-snap-align: start;
+        }
+        .ai-project-card[data-style="portfolio"],
+        .ai-project-card[data-style="ai-native"],
+        .ai-project-card[data-style="placeholder"] {
+          grid-column: auto;
+          grid-row: auto;
+        }
+        .ai-cover-copy {
+          left: 26px;
+          right: 26px;
+          bottom: 28px;
+        }
+        .ai-card-detail {
+          padding-left: 24px;
+          padding-right: 24px;
+          padding-top: 34px;
+        }
+        .ai-project-card:hover .ai-card-detail,
+        .ai-project-card:focus-visible .ai-card-detail {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        .ai-card-title,
+        .ai-card-summary {
+          max-width: calc(100% - 54px);
+        }
+      }
       .proj-card-spotlight {
         pointer-events: none;
         position: absolute;
@@ -1218,6 +1453,7 @@
       .project-grid-hovering #byte-growth-carousel .proj-card,
       .project-grid-hovering #byte-growth-carousel .proj-card.is-hovered {
         opacity: 1;
+        transform: none;
       }
       
       @keyframes marquee {
@@ -1293,7 +1529,7 @@
           min-width: 76px;
           height: 32px;
           padding: 0 12px;
-          font-size: 12px;
+          font-size: 11px;
         }
         .contact-section-wrap {
           grid-template-columns: 1fr;
@@ -1341,6 +1577,9 @@
         }
         .timeline-item .timeline-title {
           font-size: 24px;
+        }
+        .timeline-date {
+          font-size: 11px;
         }
         .timeline-item .timeline-sub {
           font-size: 15px;
@@ -1414,7 +1653,7 @@
               <a href="#about" class="btn-secondary">全链路设计思维</a>
               <span class="hero-label">复杂业务拆解</span>
               <span class="hero-label">数据洞察</span>
-              <span class="hero-label">AI辅助设计</span>
+              <span class="hero-label">AI设计</span>
             </div>
             <div class="hero-stats">
               <div class="stat-item"><p class="stat-num">7+</p><p class="stat-label">设计经验</p></div>
@@ -1449,9 +1688,9 @@
               <div class="advantage-section">
                 <h3 class="exp-title">关于我</h3>
                 <div class="exp-desc">
-                  <p>在滴滴、阿里和字节的7年里，我深度参与并主导了多个亿级用户产品的体验设计，<span class="about-em">覆盖 B 端数据产品、C端增长玩法。</span>这些经历让我形成了对<span class="about-em">复杂系统的拆解能力、对业务逻辑的洞察能力</span>，以及将复杂问题转化为清晰体验方案的能力。</p>
-                            <p>目前我也开始将职业关注点转向 <span class="about-em">AI Native 设计</span>。这个选择并不是追逐风口，而是因为我发现，过去积累的<span class="about-normal">复杂系统设计、数据产品设计、增长体验设计和建体系的能力</span>，正在成为 AI 产品中非常重要的底层能力。</p>
-                            <p>在滴滴，我积累的复杂系统拆解能力，可以<span class="about-em">迁移到 AI Agent等任务型产品中</span>；在阿里，我主导灯塔专业版 App 改版，将复杂数据转化为清晰决策体验，可<span class="about-em">迁移到 AI 数据分析、智能洞察等场景</span>；在字节，我长期负责增长玩法和激励反馈体验，可<span class="about-em">迁移到 AI 产品中的新手引导、Prompt 引导、任务型交互、反馈确认等场景</span>。</p>
+                  <p>在字节、阿里和滴滴的7年里，我深度参与并主导了多个亿级用户产品的体验设计，<span class="about-em">覆盖 B 端数据产品、C端增长玩法</span>。这些经历让我形成了对复杂系统的拆解能力、对业务逻辑的洞察能力，以及将复杂问题转化为清晰体验方案的能力</p>
+                            <p>目前我也开始将职业关注点转向 AI Native 设计。这个选择并不是追逐风口，而是因为我发现，过去积累的<span class="about-normal">复杂系统设计、数据产品设计、增长体验设计和建体系的能力</span>，正在成为 AI 产品中非常重要的底层能力</p>
+                            <p>在字节，我长期负责增长玩法和激励反馈体验，<span class="about-em">可迁移到 AI 产品中的 Prompt 引导、任务型交互、反馈确认等场景</span>；在阿里，我主导灯塔专业版 App 改版，将复杂数据转化为清晰决策体验，<span class="about-em">可迁移到 AI 数据分析、智能洞察等场景</span>；在滴滴，我积累的复杂系统拆解能力，<span class="about-em">可以迁移到 AI Agent等任务型产品中</span></p>
                             <p>我理解的 AI 产品设计，不只是把对话框放进产品，而是重新设计人与智能系统的协作方式：让用户能够理解它、信任它、控制它。我的目标，是<span class="about-normal">成为AI 时代的产品体验设计师</span></p>
                 </div>
               </div>
@@ -1460,15 +1699,15 @@
                 <div class="project-list">
                   <div class="project-row">
                     <span class="project-tag tag-zijie">字节</span>
-                    <p class="project-text">核心负责 抖音app端 激励增长方向玩法体验优化，参与抖音系多端场景设计，通过精细化的设计策略带动了LT的有效增长；0-1搭建抖音激励中台能力系统，外线业务仅一个半月就上线了一整套激励能力，开发成本降低45%，显著提升RD协作效率与跨团队复用效率；0-1制定设计规范标准，为上下游提效；主动优化项目合作中的流程问题，制定优化机制。</p>
+                    <p class="project-text">核心负责 抖音app端 激励增长方向玩法体验优化，参与抖音系多端场景设计，通过精细化的设计策略带动了LT的有效增长；0-1搭建抖音激励中台能力系统，外线业务仅一个半月就上线了一整套激励能力，开发成本降低45%，显著提升RD协作效率与跨团队复用效率；0-1制定设计规范标准，为上下游提效；主动优化项目合作中的流程问题，制定优化机制</p>
                   </div>
                   <div class="project-row">
                     <span class="project-tag tag-ali">阿里</span>
-                    <p class="project-text">主导灯塔专业版影视数据 app 整体改版升级、管理外包团队、影响力设计分享</p>
+                    <p class="project-text">主导灯塔专业版影视数据 app 整体改版升级、负责外包设计团队管理与设计质量把控，制定页面交付规范、评审机制与协作流程，沉淀专业数据产品设计方法，并进行团队影响力设计分享</p>
                   </div>
                   <div class="project-row">
                     <span class="project-tag tag-didi">滴滴</span>
-                    <p class="project-text">B端企业级数据 BI 产品设计 、部分滴滴云设计</p>
+                    <p class="project-text">负责 B 端企业级数据 BI 产品设计，同时参与部分滴滴云相关设计工作，支持云产品控制台、资源管理及服务配置等场景的体验优化，协助提升 B 端产品整体一致性与交付质量</p>
                   </div>
                   <div class="project-row">
                     <span class="project-tag tag-other">其他</span>
@@ -1489,7 +1728,27 @@
               <div class="timeline-item">
                 <div class="timeline-header" onclick="toggleTimelineItem(this)">
                   <div class="timeline-info">
-                    <h4 class="timeline-title">2022/2-至今：字节跳动</h4>
+                    <p class="timeline-date">Now</p>
+                    <h4 class="timeline-title">AI Exploration</h4>
+                    <p class="timeline-sub">AI设计探索 · AI-Native Portfolio / AI 工作流</p>
+                  </div>
+                  <button class="timeline-toggle">
+                    <span class="toggle-icon" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="timeline-body">
+                  <ul class="work-detail-list">
+                    <li class="work-detail-item"><span class="check-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="#5B6CF9" stroke-width="1"/><path d="M5 8L7 10L11 6" stroke="#5B6CF9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p class="work-detail-text">使用 ChatGPT、Claude、Cursor、Codex 等 AI 工具探索设计工作流升级</p></li>
+                    <li class="work-detail-item"><span class="check-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="#5B6CF9" stroke-width="1"/><path d="M5 8L7 10L11 6" stroke="#5B6CF9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p class="work-detail-text">将作品集从静态 PDF 升级为 AI-Native 动态网页作品集、总结沉淀AI学习使用方法</p></li>
+                    <li class="work-detail-item"><span class="check-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="#5B6CF9" stroke-width="1"/><path d="M5 8L7 10L11 6" stroke="#5B6CF9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p class="work-detail-text">内化-精进：学习设计、职场类等3门线上课程、设计工作室兼职</p></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-header" onclick="toggleTimelineItem(this)">
+                  <div class="timeline-info">
+                    <p class="timeline-date">2022/8 - 2025/9</p>
+                    <h4 class="timeline-title">字节跳动</h4>
                     <p class="timeline-sub">抖音 app 体验设计</p>
                   </div>
                   <button class="timeline-toggle">
@@ -1508,7 +1767,8 @@
               <div class="timeline-item">
                 <div class="timeline-header" onclick="toggleTimelineItem(this)">
                   <div class="timeline-info">
-                    <h4 class="timeline-title">2020/3-2022/1：阿里巴巴集团</h4>
+                    <p class="timeline-date">2020/5 - 2022/8</p>
+                    <h4 class="timeline-title">阿里巴巴集团</h4>
                     <p class="timeline-sub">BtoC大型影视产品设计</p>
                   </div>
                   <button class="timeline-toggle">
@@ -1526,7 +1786,8 @@
               <div class="timeline-item">
                 <div class="timeline-header" onclick="toggleTimelineItem(this)">
                   <div class="timeline-info">
-                    <h4 class="timeline-title">2019/4-2020/2：滴滴出行</h4>
+                    <p class="timeline-date">2019/7 - 2020/5</p>
+                    <h4 class="timeline-title">滴滴出行</h4>
                     <p class="timeline-sub">B端企业级数据产品交互设计</p>
                   </div>
                   <button class="timeline-toggle">
@@ -1543,7 +1804,8 @@
               <div class="timeline-item">
                 <div class="timeline-header" onclick="toggleTimelineItem(this)">
                   <div class="timeline-info">
-                    <h4 class="timeline-title">2017/7-2019/3：易点天下</h4>
+                    <p class="timeline-date">2017/1 - 2019/7</p>
+                    <h4 class="timeline-title">易点天下</h4>
                     <p class="timeline-sub">UI设计</p>
                   </div>
                   <button class="timeline-toggle">
@@ -1560,7 +1822,8 @@
               <div class="timeline-item">
                 <div class="timeline-header" onclick="toggleTimelineItem(this)">
                   <div class="timeline-info">
-                    <h4 class="timeline-title">2016/6-2017/6：中兴通讯</h4>
+                    <p class="timeline-date">2016/6 - 2016/12</p>
+                    <h4 class="timeline-title">中兴通讯</h4>
                     <p class="timeline-sub">实习</p>
                   </div>
                   <button class="timeline-toggle">
@@ -1576,10 +1839,6 @@
             </div>
           </div>
         </div>
-        <div class="about-photo-reveal" data-about-photo-reveal aria-hidden="true">
-          <img src="./images/hero-avatar.png" alt="" />
-          <canvas class="about-photo-particles" data-about-photo-particles></canvas>
-        </div>
       </section>
 
       <section id="projects" class="reveal relative pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden" style="padding-top:100px;background-image:radial-gradient(circle, #d4d4d4 0.8px, transparent 0.8px);background-size:20px 20px;">
@@ -1592,7 +1851,7 @@
           <div class="max-w-3xl mb-6">
             <div class="flex items-center gap-8 flex-wrap">
               <button class="project-tab tab-btn-active text-2xl sm:text-3xl transition-colors duration-200" data-tab="projects-byte" data-tab-label="增长设计">增长设计</button>
-              <button class="project-tab tab-btn-inactive text-2xl sm:text-3xl transition-colors duration-200" data-tab="projects-platform" data-tab-label="0-1建体系">0-1建体系</button>
+              <button class="project-tab tab-btn-inactive text-2xl sm:text-3xl transition-colors duration-200" data-tab="projects-platform" data-tab-label="0-1建体系方法">0-1建体系方法</button>
               <button class="project-tab tab-btn-inactive text-2xl sm:text-3xl transition-colors duration-200" data-tab="projects-ali" data-tab-label="0-1大型项目改版">0-1大型项目改版</button>
               <button class="project-tab tab-btn-inactive text-2xl sm:text-3xl transition-colors duration-200" data-tab="projects-didi" data-tab-label="中后台">中后台</button>
               <button class="project-tab tab-btn-inactive text-2xl sm:text-3xl transition-colors duration-200" data-tab="projects-collab" data-tab-label="协作流程优化">协作流程优化</button>
@@ -1615,37 +1874,37 @@
                     </div>
                   </div>
                 </a>
-                <div class="byte-growth-card" style="--i:1;display:block;">
+                <a class="card-link byte-growth-card" href="./project-byte-growth-more.html" data-project-target="project-byte-growth-more" style="--i:1;display:block;">
                   <div class="proj-card proj-card-wide" data-card>
                     <div class="proj-card-wide-layout">
-                      <div class="pc-cover" style="background-color:#F0C7B1;"><div class="absolute inset-0 flex items-center justify-center"><span class="text-2xl font-bold text-gray-400">项目补充中</span></div></div>
+                      <div class="pc-cover"><img src="./images/treasure-page-0001.jpg" alt="宝箱玩法链路升级封面" class="absolute inset-0 w-full h-full object-cover object-center" /></div>
                       <div class="pc-body bg-white">
-                        <div class="pc-num">04 / 字节项目补充</div>
-                        <div class="pc-title">更多增长案例整理中</div>
-                        <div class="pc-desc">这一张先作为补充卡片占位，后面你给我具体项目名和描述，我可以直接替换成正式内容。</div>
-                        <div class="pc-tags"><span class="pc-tag">待补充</span></div>
+                        <div class="pc-num">抖音app激励体验设计</div>
+                        <div class="pc-title">提宝箱开启率流程优化升级</div>
+                        <div class="pc-desc">三端 LT30留存+0.15pp，宝箱总PV+8.32%</div>
+                        <div class="pc-tags"><span class="pc-tag">增长设计</span><span class="pc-tag">激励体系</span></div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="byte-growth-card" style="--i:2;display:block;">
+                </a>
+                <a class="card-link byte-growth-card" href="./project-byte-experience-more.html" data-project-target="project-byte-experience-more" style="--i:2;display:block;">
                   <div class="proj-card proj-card-wide" data-card>
                     <div class="proj-card-wide-layout">
-                      <div class="pc-cover" style="background-color:#C9D3E6;"><div class="absolute inset-0 flex items-center justify-center"><span class="text-2xl font-bold text-gray-400">项目补充中</span></div></div>
+                      <div class="pc-cover"><img src="./images/video-page-0002.jpg" alt="引导低活用户看视频设计专项封面" class="absolute inset-0 w-full h-full object-cover object-center" /></div>
                       <div class="pc-body bg-white">
-                        <div class="pc-num">05 / 字节项目补充</div>
-                        <div class="pc-title">更多体验优化案例整理中</div>
-                        <div class="pc-desc">这一张也先保留同风格大卡位置，等你确认文案后，我再把标题、描述和标签一起换成正式版本。</div>
-                        <div class="pc-tags"><span class="pc-tag">待补充</span></div>
+                        <div class="pc-num">抖音app激励体验设计</div>
+                        <div class="pc-title">引导低活用户持续看视频</div>
+                        <div class="pc-desc">低活人群 LT30 +1.34%，有效VV +2.88%</div>
+                        <div class="pc-tags"><span class="pc-tag">增长设计</span><span class="pc-tag">低活用户</span></div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
 
-          <div id="projects-platform" class="tab-panel" style="margin-top:32px;">
+          <div id="projects-platform" class="tab-panel" style="margin-top:52px;">
             <div class="proj-grid project-grid" data-grid="platform">
               <a class="card-link" href="./project-qiandao.html" data-project-target="project-qiandao" style="display:block;grid-column:1 / -1;">
                 <div class="proj-card proj-card-wide" data-card>
@@ -1663,7 +1922,7 @@
             </div>
           </div>
 
-          <div id="projects-ali" class="tab-panel" style="margin-top:32px;">
+          <div id="projects-ali" class="tab-panel" style="margin-top:52px;">
             <div class="proj-grid project-grid" data-grid="ali">
               <a class="card-link" href="./project-ali.html" data-project-target="project-ali" style="display:block;grid-column:1 / -1;">
                 <div class="proj-card proj-card-wide" data-card>
@@ -1676,7 +1935,7 @@
             </div>
           </div>
 
-          <div id="projects-didi" class="tab-panel" style="margin-top:32px;">
+          <div id="projects-didi" class="tab-panel" style="margin-top:52px;">
             <div class="proj-grid project-grid" data-grid="didi">
               <a class="card-link" href="./project-didi.html" data-project-target="project-didi" style="display:block;grid-column:1 / -1;">
                 <div class="proj-card proj-card-wide" data-card>
@@ -1689,7 +1948,7 @@
             </div>
           </div>
 
-          <div id="projects-collab" class="tab-panel" style="margin-top:32px;">
+          <div id="projects-collab" class="tab-panel" style="margin-top:52px;">
             <div class="proj-grid project-grid" data-grid="collab">
               <a class="card-link" href="./project-dengta.html" data-project-target="project-dengta" style="display:block;grid-column:1 / -1;">
                 <div class="proj-card proj-card-wide" data-card>
@@ -1717,15 +1976,37 @@
             <div class="content-section-tag mb-3"><span class="content-section-tag-line">——</span><span>AI探索项目</span></div>
             <h2 class="text-4xl sm:text-5xl font-bold text-[#1a1a1a] max-w-2xl">在工作流中熟练使用 AI 工具，探索 AI Native 设计方法</h2>
           </div>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="relative rounded-3xl p-8 bg-gradient-to-br from-purple-500 to-blue-600 text-white overflow-hidden min-h-[280px] flex flex-col justify-end">
-              <h3 class="text-xl font-bold mb-2">如何用 vibe coding 做作品集（本站）</h3>
-              <p class="text-white/80 text-sm">用 AI 工具辅助设计并构建本动态作品集网站，以产品思维替代传统 PDF，记录 AI 协作全流程的方法</p>
-            </div>
-            <div class="relative rounded-3xl p-8 bg-gradient-to-br from-blue-400 to-cyan-400 text-white overflow-hidden min-h-[280px] flex flex-col justify-end">
-              <h3 class="text-xl font-bold mb-2">占位文案</h3>
-              <p class="text-white/80 text-sm">内容整理中</p>
-            </div>
+          <div class="ai-project-cards">
+            <a class="ai-project-card" href="./project-ai-portfolio.html" data-style="portfolio">
+              <div class="ai-card-visual">
+                <img class="ai-card-image" src="./images/ai-portfolio-cover.png" alt="如何用 vibe coding 做作品集（本站）封面" />
+              </div>
+              <div class="ai-card-detail">
+                <h3 class="ai-card-title">如何用 vibe coding 做作品集（本站）</h3>
+                <p class="ai-card-summary">用 AI 工具辅助设计并构建本动态作品集网站，以产品思维替代传统 PDF，记录 AI 协作全流程的方法</p>
+                <span class="ai-card-arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+            <a class="ai-project-card" href="./project-ai-native.html" data-style="ai-native">
+              <div class="ai-card-visual">
+                <img class="ai-card-image" src="./images/ai-native-restoration-cover.png" alt="如何用 AI 高质量还原设计稿封面" />
+              </div>
+              <div class="ai-card-detail">
+                <h3 class="ai-card-title">如何用 AI 高质量还原设计稿</h3>
+                <p class="ai-card-summary">通过 AI 工具辅助前端还原与工作流拆解，沉淀高质量设计稿还原方法</p>
+                <span class="ai-card-arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+            <a class="ai-project-card" href="./project-ai-placeholder.html" data-style="placeholder">
+              <div class="ai-card-visual">
+                <img class="ai-card-image" src="./images/monkey-cover.png" alt="Monkey Club AI 生成 App 界面封面" />
+              </div>
+              <div class="ai-card-detail">
+              <h3 class="ai-card-title">用 AI 生成高质量 APP 界面</h3>
+                <p class="ai-card-summary">用清晰的提示词，让 AI 快速完成从界面构思到高质量视觉方案的生成</p>
+                <span class="ai-card-arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -1741,7 +2022,7 @@
         <div class="contact-section-wrap">
           <div class="contact-left">
             <div class="contact-eyebrow">Contact</div>
-            <h2 class="contact-headline">AI 时代，好的体验比以往任何时候都重要，期待加入团队，欢迎聊聊</h2>
+        <h2 class="contact-headline">AI 时代，好的体验比以往任何时候都重要，期待加入您的团队！欢迎聊聊～</h2>
           </div>
           <div class="contact-right">
             <div class="contact-info-card">
@@ -1766,66 +2047,155 @@
         </div>
       </section>
       </div>
-    </main>
+  </main>
 
-    <script>
-      function bindTabs(buttonSelector, panelPrefix) {
-        const buttons = Array.from(document.querySelectorAll(buttonSelector));
-        const activate = (button) => {
-          const target = button.getAttribute("data-tab");
-          buttons.forEach((btn) => {
-            btn.classList.remove("tab-btn-active");
-            btn.classList.add("tab-btn-inactive");
-          });
-          button.classList.remove("tab-btn-inactive");
-          button.classList.add("tab-btn-active");
-          document.querySelectorAll('[id^="' + panelPrefix + '"]').forEach((panel) => {
-            panel.classList.remove("active");
-          });
-          const current = document.getElementById(target);
-          if (current) current.classList.add("active");
-          const byteWrap = document.getElementById("byte-subtabs-wrap");
-          if (byteWrap) {
-            byteWrap.style.display = target === "projects-byte" ? "" : "none";
-          }
-        };
-        buttons.forEach((button) => {
-          button.addEventListener("mouseenter", () => activate(button));
-          button.addEventListener("click", () => activate(button));
+  <script>
+    function clearProjectCardHoverState(root = document) {
+      root.querySelectorAll(".project-grid-hovering").forEach((grid) => grid.classList.remove("project-grid-hovering"));
+      root.querySelectorAll(".proj-card.is-hovered").forEach((card) => card.classList.remove("is-hovered"));
+    }
+
+    function getByteGrowthDefaultCardState(cardIndex, total) {
+      let diff = cardIndex;
+      if (diff > total / 2) diff -= total;
+
+      const stepY = 420 + 20;
+      if (diff === 0) return { scale: 1, y: 0, zIndex: 30 };
+      if (diff === -1) return { scale: 0.9, y: -stepY * 0.2, zIndex: 20 };
+      if (diff === 1) return { scale: 0.9, y: stepY * 0.3, zIndex: 20 };
+      if (diff <= -2) return { scale: 0.82, y: -stepY * 0.32, zIndex: 10 };
+      return { scale: 0.82, y: stepY * 0.62, zIndex: 5 };
+    }
+
+    function resetByteGrowthCardsToDefault(container, cards) {
+      if (!container || !cards.length) return;
+
+      container.style.overflow = "visible";
+      container.style.clipPath = "none";
+
+      cards.forEach((card, index) => {
+        const state = getByteGrowthDefaultCardState(index, cards.length);
+        card.classList.toggle("is-current", index === 0);
+        card.style.display = "";
+        card.style.visibility = "visible";
+        card.style.opacity = "1";
+        card.style.overflow = "visible";
+        card.style.clipPath = "none";
+        card.style.transformOrigin = "center top";
+
+        card.querySelectorAll(".proj-card").forEach((projectCard) => {
+          projectCard.classList.remove("is-hovered");
+          projectCard.style.transform = "";
+          projectCard.style.rotate = "";
+          projectCard.style.scale = "";
         });
-        if (buttonSelector === ".project-tab") {
-          window.activateProjectTab = (target) => {
-            const button = buttons.find((btn) => btn.getAttribute("data-tab") === target);
-            if (button) activate(button);
-          };
+
+        if (typeof window.gsap !== "undefined") {
+          window.gsap.killTweensOf(card);
+          window.gsap.set(card, {
+            scale: state.scale,
+            y: state.y,
+            x: 0,
+            zIndex: state.zIndex,
+            rotation: 0,
+            rotationX: 0,
+            rotationY: 0,
+            skewX: 0,
+            skewY: 0,
+            transformOrigin: "center top",
+          });
+        } else {
+          card.style.zIndex = String(state.zIndex);
+          card.style.transform = `translate3d(0px, ${state.y}px, 0px) scale(${state.scale})`;
         }
-      }
+      });
+    }
 
-      function bindByteProjectSubtabs() {
-        const buttons = Array.from(document.querySelectorAll("[data-byte-subtab]"));
-        const panels = Array.from(document.querySelectorAll("[data-byte-subtab-panel]"));
-        const growthCards = Array.from(document.querySelectorAll("#projects-byte .byte-growth-card"));
-        const defaultTarget = "growth";
-        const validTargets = new Set(panels.map((panel) => panel.getAttribute("data-byte-subtab-panel")));
-        const activate = (target) => {
-          const currentTarget = validTargets.has(target) ? target : defaultTarget;
-          buttons.forEach((button) => {
-            button.classList.toggle("is-active", button.getAttribute("data-byte-subtab") === currentTarget);
-          });
-          panels.forEach((panel) => {
-            panel.style.display = panel.getAttribute("data-byte-subtab-panel") === currentTarget ? "" : "none";
-          });
-          growthCards.forEach((card) => {
-            card.style.display = currentTarget === "growth" ? "" : "none";
-          });
-        };
-        buttons.forEach((button) => {
-          button.addEventListener("mouseenter", () => activate(button.getAttribute("data-byte-subtab")));
-          button.addEventListener("click", () => activate(button.getAttribute("data-byte-subtab")));
-        });
-        window.activateByteProjectSubtab = activate;
-        activate(defaultTarget);
+    function resetByteGrowthEntryState() {
+      clearProjectCardHoverState();
+      const container = document.getElementById("byte-growth-carousel");
+      if (!container) return;
+
+      const cards = Array.from(container.querySelectorAll(".byte-growth-card"));
+      if (typeof window.resetByteGrowthCarouselPose === "function") {
+        window.resetByteGrowthCarouselPose();
+      } else {
+        resetByteGrowthCardsToDefault(container, cards);
       }
+    }
+
+    function bindTabs(buttonSelector, panelPrefix) {
+      const buttons = Array.from(document.querySelectorAll(buttonSelector));
+      const activate = (button) => {
+        const target = button.getAttribute("data-tab");
+        buttons.forEach((btn) => {
+          btn.classList.remove("tab-btn-active");
+          btn.classList.add("tab-btn-inactive");
+        });
+        button.classList.remove("tab-btn-inactive");
+        button.classList.add("tab-btn-active");
+        document.querySelectorAll('[id^="' + panelPrefix + '"]').forEach((panel) => {
+          panel.classList.remove("active");
+        });
+        const current = document.getElementById(target);
+        if (current) current.classList.add("active");
+        const byteWrap = document.getElementById("byte-subtabs-wrap");
+        if (byteWrap) {
+          byteWrap.style.display = target === "projects-byte" ? "" : "none";
+        }
+        if (buttonSelector === ".project-tab" && target === "projects-byte") {
+          const resetGrowthEntry = () => {
+            resetByteGrowthEntryState();
+            resetProjectReturnPose();
+          };
+          requestAnimationFrame(() => {
+            resetGrowthEntry();
+            requestAnimationFrame(resetGrowthEntry);
+          });
+        } else if (buttonSelector === ".project-tab") {
+          requestAnimationFrame(resetProjectReturnPose);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("mouseenter", () => activate(button));
+        button.addEventListener("click", () => activate(button));
+      });
+      if (buttonSelector === ".project-tab") {
+        window.activateProjectTab = (target) => {
+          const button = buttons.find((btn) => btn.getAttribute("data-tab") === target);
+          if (button) activate(button);
+        };
+      }
+    }
+
+    function bindByteProjectSubtabs() {
+      const buttons = Array.from(document.querySelectorAll("[data-byte-subtab]"));
+      const panels = Array.from(document.querySelectorAll("[data-byte-subtab-panel]"));
+      const growthCards = Array.from(document.querySelectorAll("#projects-byte .byte-growth-card"));
+      const defaultTarget = "growth";
+      const validTargets = new Set(panels.map((panel) => panel.getAttribute("data-byte-subtab-panel")));
+      const activate = (target) => {
+        const currentTarget = validTargets.has(target) ? target : defaultTarget;
+        buttons.forEach((button) => {
+          button.classList.toggle("is-active", button.getAttribute("data-byte-subtab") === currentTarget);
+        });
+        panels.forEach((panel) => {
+          panel.style.display = panel.getAttribute("data-byte-subtab-panel") === currentTarget ? "" : "none";
+        });
+        growthCards.forEach((card) => {
+          card.style.display = currentTarget === "growth" ? "" : "none";
+        });
+        if (currentTarget === "growth") {
+          requestAnimationFrame(resetByteGrowthEntryState);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("mouseenter", () => activate(button.getAttribute("data-byte-subtab")));
+        button.addEventListener("click", () => activate(button.getAttribute("data-byte-subtab")));
+      });
+      window.activateByteProjectSubtab = activate;
+      activate(defaultTarget);
+    }
 
       function getProjectReturnParams() {
         const params = new URLSearchParams(window.location.search);
@@ -1853,8 +2223,32 @@
             ? Array.from(document.querySelectorAll("[data-project-target]")).find((item) => item.getAttribute("data-project-target") === target)
             : null;
           const fallback = document.getElementById("projects");
-          (projectTarget || fallback)?.scrollIntoView({ behavior: "auto", block: "center" });
+          const projects = document.getElementById("projects");
+          if (projects) {
+            const straightProjectTop = projects.offsetTop + 120;
+            window.scrollTo({ top: Math.max(0, straightProjectTop), behavior: "auto" });
+          } else {
+            (projectTarget || fallback)?.scrollIntoView({ behavior: "auto", block: "start" });
+          }
+          const resetReturnEntry = () => {
+            resetProjectReturnPose();
+            resetByteGrowthEntryState();
+          };
+          resetReturnEntry();
+          requestAnimationFrame(resetReturnEntry);
+          window.setTimeout(resetReturnEntry, 80);
         });
+      }
+
+      function resetProjectReturnPose() {
+        const projects = document.getElementById("projects");
+        if (!projects) return;
+        clearProjectCardHoverState();
+        if (typeof window.gsap !== "undefined") {
+          window.gsap.set(projects, { rotation: 0 });
+        } else {
+          projects.style.transform = "rotate(0deg)";
+        }
       }
 
       function bindAboutTabs() {
@@ -2232,7 +2626,7 @@
 
           if (diff === 0) return { scale: 1, y: 0, zIndex: 30 };
           if (diff === -1) return { scale: 0.9, y: -stepY * 0.2, zIndex: 20 };
-          if (diff === 1) return { scale: 0.9, y: stepY * 0.36, zIndex: 20 };
+          if (diff === 1) return { scale: 0.9, y: stepY * 0.3, zIndex: 20 };
           if (diff <= -2) return { scale: 0.82, y: -stepY * 0.32, zIndex: 10 };
           return { scale: 0.82, y: stepY * 0.62, zIndex: 5 };
         }
@@ -2254,7 +2648,7 @@
             if (i === oldIndex) {
               const oldCardTargetY = direction === "next"
                 ? -stepY * CONFIG.pushUpDistance
-          : stepY * 0.36;
+          : stepY * 0.3;
               const oldCardTargetZ = direction === "next" ? 20 : 20;
               window.gsap.fromTo(card,
                 { scale: 1, y: 0, zIndex: 30 },
@@ -2348,20 +2742,22 @@
           else if (event.key === "ArrowUp" || event.key === "ArrowLeft") goPrev();
         });
 
-        cards.forEach((card, index) => {
-          const state = getCardTargetState(index, 0);
-          window.gsap.set(card, {
-            scale: state.scale,
-            y: state.y,
-            zIndex: state.zIndex,
-          });
-        });
+        resetByteGrowthCardsToDefault(container, cards);
         syncCurrentCardState();
+
+        window.resetByteGrowthCarouselPose = () => {
+          currentIndex = 0;
+          cooldown = false;
+          resetByteGrowthCardsToDefault(container, cards);
+          syncCurrentCardState();
+        };
       }
 
       function bindProjectHover() {
         document.querySelectorAll(".project-grid").forEach((grid) => {
-          const cards = Array.from(grid.querySelectorAll("[data-card]"));
+          const cards = Array.from(grid.querySelectorAll("[data-card]"))
+            .filter((card) => !card.closest("#byte-growth-carousel"));
+          if (!cards.length) return;
           cards.forEach((card) => {
             card.addEventListener("mouseenter", () => {
               grid.classList.add("project-grid-hovering");

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const navItems = [
-  { label: "首页", href: "/" },
-  { label: "关于我", href: "/#about" },
-  { label: "我的项目", href: "/#projects" },
-  { label: "AI 探索", href: "/#ai-explore" },
+  { label: "首页", href: "/#top", targetId: "top" },
+  { label: "关于我", href: "/#about", targetId: "about" },
+  { label: "我的项目", href: "/#projects", targetId: "projects" },
+  { label: "AI 探索", href: "/#ai-explore", targetId: "ai-explore" },
 ];
 
 const sectionMap = [
@@ -17,6 +17,25 @@ const sectionMap = [
 
 export default function Navbar() {
   const [activeLabel, setActiveLabel] = useState("首页");
+
+  const animateScrollTo = (targetTop: number) => {
+    window.scrollTo({ top: targetTop });
+  };
+
+  const scrollToSection = (targetId: string) => {
+    if (typeof window === "undefined") return;
+    if (targetId === "top") {
+      animateScrollTo(0);
+      return;
+    }
+
+    const element = document.getElementById(targetId);
+    if (!element) return;
+
+    const navOffset = 120;
+    const top = element.getBoundingClientRect().top + window.scrollY - navOffset;
+    animateScrollTo(top);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,6 +83,8 @@ export default function Navbar() {
                 key={item.label}
                 className={`nav-link ${isActive ? "is-active" : ""}`}
                 href={item.href}
+                onMouseEnter={() => scrollToSection(item.targetId)}
+                onFocus={() => scrollToSection(item.targetId)}
               >
                 {item.label}
               </a>
@@ -71,7 +92,12 @@ export default function Navbar() {
           })}
         </div>
 
-        <a className="contact-pill" href="/#contact">
+        <a
+          className="contact-pill"
+          href="/#contact"
+          onMouseEnter={() => scrollToSection("contact")}
+          onFocus={() => scrollToSection("contact")}
+        >
           联系我
         </a>
       </nav>

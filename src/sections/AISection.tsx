@@ -23,8 +23,9 @@ export default function AISection() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <div className="section-tag mb-3 flex items-center gap-3 text-sm text-gray-500">
-            <span className="text-[#1a1a1a]">——</span> AI探索项目
+          <div className="content-section-tag mb-3">
+            <span className="content-section-tag-line">——</span>
+            <span>AI探索项目</span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold text-[#1a1a1a] max-w-2xl">
             在工作流中熟练使用 AI 工具，探索 AI Native 设计方案
